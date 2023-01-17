@@ -1,0 +1,51 @@
+
+:root {
+    --main-bg-color: #D10024e6;
+    --dark-text-color: #333;
+    --bg-black-color: #1E1F29;
+    --white-text-color: #FFF;
+    --font-family: "popins", sans-serif;
+    --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    --border: rgba(0,0,0,.1);
+
+}
+
+.box_contactus {
+text-transform: capitalize;
+font-family: var(--font-family);
+position: relative;
+}
+.box_contactus  .main_heading{
+    color: var(--main-bg-color);
+    font-size: 30px;
+    font-weight: 900;
+    margin: 50px 0px;
+    text-align: center;
+  
+    position: relative;
+}
+
+.box_contactus  .main_heading::before{
+    content: "";
+    position: absolute;
+    height: 2px ;
+    top: 100%;
+  
+    background-color: var(--main-bg-color);
+    
+    padding: 1px;
+}
+
+.conatct_form .form-label{
+    color: var(--main-bg-color);
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.conatct_form .form-control{
+    background-color: var(--border);
+    height: 45px;
+    border-radius: 20px;
+}
