@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom';
 import "../components/style/style.css";
 import {BsFillCartFill} from "react-icons/bs"
 import $ from "jquery";
-
+import { useSelector } from 'react-redux';
+import { CartReducer } from './Redux/Reducer/Reducer';
 const Header = () => {
+  const data = useSelector((state)=>state.CartReducer.carts);
+  
 {
   $(window).scroll(function() {    
     var scrolling = $(window).scrollTop();
@@ -51,7 +54,7 @@ const Header = () => {
     <NavLink class="nav-link" to="/contact">Contact</NavLink>
   </li>
   <li class="nav-item">
-    <NavLink class="nav-link" to="/card">
+    <NavLink class="nav-link" to="/card_details">
    
  
 
@@ -60,7 +63,10 @@ const Header = () => {
       <BsFillCartFill/> 
       </div>
   <span class="badge_icon">
-   1
+  <div className="text-center">
+        {data.length}
+        
+        </div>
   </span>
 </div>
     </NavLink>

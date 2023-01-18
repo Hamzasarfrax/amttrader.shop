@@ -1,92 +1,96 @@
 import React from 'react';
 import "../style/card.css";
+import { useState ,useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import $ from "jquery";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ADD } from '../Redux/Actions/Action';
+import CartData from './Json';
 const Card = () => {
-  return (
-    <div>
-     <div className="row">
-        <div className="col-sm-4">
-        <div className="add_to_cart">
-        <div className="card_box_main">
-<div className="img">
-    <img src="https://dummyimage.com/300x150/000/fff&text=300x150-cart" alt="cart-img"  className='img-fluid rounded' />
-</div>
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await fetch('https://fakestoreapi.com/products?limit=5');
+    //         const result = await response.json();
+    //         setdata(result);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+    const [data,setdata] =useState(CartData);
+    const dispatch=useDispatch();
+ const send=(x,y)=>{
+    dispatch(ADD(x))
+    let cart_btn=document.getElementById(`add_cart${y}`);
+    cart_btn.innerHTML=`
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  `
 
-<div className="card_body">
-<div className="cart_title">
-    product name
-</div>
-    <div className="cart_desc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, repellendus!
-    </div>
+  setTimeout(()=>{
+    cart_btn.innerHTML="Your Product is Added";
+    toast.success('Sucesfully Added', {
+        position: "top-center",
+        autoClose: 500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+  },1000)
+   
 
-<div className="cart_price">
-    <span className='rupee'>pkr</span>
-    <span>12000</span>
-</div>
-<button className='btn btn_cart btn_main'>add to cart</button>
+ }
+    useEffect(()=>{
 
-</div>
+    },[])
+    return (
+        <div>
+          <ToastContainer />
+            <div className="row">
+               {
+                data.map((item,index)=>{
+return(
 
+    <div className="col-sm-4" key={index}>
+                    <div className="add_to_cart">
+                        <div className="card_box_main">
+                            <div className="img">
+                                <img src={item.image} alt="cart-img" className='img-fluid rounded' />
+                            </div>
+
+                            <div className="card_body">
+                                <div className="cart_title">
+                                   {item.title}
+                                </div>
+                                <div className="cart_desc">
+                                   {
+                                    item.description
+                                   }
+                                </div>
+
+                                <div className="cart_price">
+                                    <span className='rupee'>pkr</span>
+                                    <span>{item.price}</span>
+                                </div>
+                                <button className='btn btn_cart btn_main' id={`add_cart${item.id}`} onClick={()=>send(item,item.id)}>add to cart
+                                </button>
+                              
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+)
+                })
+              
+               }
+
+            </div>
         </div>
-      </div>
-        </div>
-        <div className="col-sm-4">
-        <div className="add_to_cart">
-        <div className="card_box_main">
-<div className="img">
-    <img src="https://dummyimage.com/300x150/000/fff&text=300x150-cart" alt="cart-img"  className='img-fluid rounded' />
-</div>
-
-<div className="card_body">
-<div className="cart_title">
-    product name
-</div>
-    <div className="cart_desc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, repellendus!
-    </div>
-
-<div className="cart_price">
-    <span className='rupee'>pkr</span>
-    <span>12000</span>
-</div>
-<button className='btn btn_cart btn_main'>add to cart</button>
-
-</div>
-
-        </div>
-      </div>
-        </div>
-
-
-        <div className="col-sm-4">
-        <div className="add_to_cart">
-        <div className="card_box_main">
-<div className="img">
-    <img src="https://dummyimage.com/300x150/000/fff&text=300x150-cart" alt="cart-img"  className='img-fluid rounded' />
-</div>
-
-<div className="card_body">
-<div className="cart_title">
-    product name
-</div>
-    <div className="cart_desc">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, repellendus!
-    </div>
-
-<div className="cart_price">
-    <span className='rupee'>pkr</span>
-    <span>12000</span>
-</div>
-<button className='btn btn_cart btn_main'>add to cart</button>
-
-</div>
-
-        </div>
-      </div>
-        </div>
-     </div>
-    </div>
-  )
+    )
 }
 
-export default Card
+export default Card;
