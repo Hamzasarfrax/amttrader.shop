@@ -3,6 +3,10 @@ import "../style/card.css";
 import { useState ,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import $ from "jquery";
+import { AiOutlineSearch } from "react-icons/ai";
+import { FaFilter } from "react-icons/fa"
+
+import Json from "../products/Json";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ADD } from '../Redux/Actions/Action';
@@ -17,7 +21,18 @@ const Card = () => {
     //         console.error(error);
     //     }
     // };
+   
+    const [first, setfirst] = useState(Json);
     const [data,setdata] =useState(CartData);
+    const [searchfilter,setsearchfilter] =useState();
+    const filter = (x) => {
+        const filters = data.filter((item) => item.category === x);
+        setfirst(filters)
+
+    }
+    const filterall = () => {
+
+    }
     const dispatch=useDispatch();
  const send=(x,y)=>{
     dispatch(ADD(x))
@@ -49,12 +64,12 @@ const Card = () => {
     return (
         <div>
           <ToastContainer />
+        
             <div className="row">
-               {
-                data.map((item,index)=>{
-return(
-
-    <div className="col-sm-4" key={index}>
+             {
+             data.map((item,index)=>{
+                    return(
+                        <div className="col-sm-4" key={index}>
                     <div className="add_to_cart">
                         <div className="card_box_main">
                             <div className="main_top_card">
@@ -88,10 +103,9 @@ return(
                         </div>
                     </div>
                 </div>
-)
+                    )
                 })
-              
-               }
+             }
 
             </div>
         </div>
