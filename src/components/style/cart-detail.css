@@ -85,6 +85,14 @@
     text-transform: capitalize;
     height: 40px;
   }
+  .cart_section .bref_desc  .quantity_item{
+ 
+color: var(--bg--danger);
+    padding: 5px 10px;
+    border: 1px solid #bfbfbf;
+    text-transform: capitalize;
+    height: 40px;
+  }
   .cart_section .bref_desc #incdec .btn_number.plus{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;

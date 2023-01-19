@@ -1,48 +1,63 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
-import { DLT,REMOVE,ADD_ONE, ADD } from '../Redux/Actions/Action';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { useSelector, useDispatch } from 'react-redux';
+import { DLT, REMOVE, ADD_ONE, ADD } from '../Redux/Actions/Action';
+import { AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineDollar } from "react-icons/ai";
 import "../style/cart-detail.css";
 import { FcRating } from "react-icons/fc";
-import {BsTrashFill} from "react-icons/bs"
+import { BsTrashFill } from "react-icons/bs"
 import Card_detail_slider from '../slider/Cart_detail_slider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import $ from "jquery";
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
   const [price, setprice] = useState(0);
   const data = useSelector((state) => state.CartReducer.carts);
-  const dispatch=useDispatch();
-  const remove=(id)=>{
-dispatch(REMOVE(id))
-console.log(id)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const remove = (id) => {
+    dispatch(REMOVE(id))
+    console.log(id)
   };
-  const add=(id)=>{
+  const add = (id) => {
     dispatch(ADD_ONE(id))
-   
+
   };
-  const dlt=(id,title)=>{
-  dispatch(DLT(id));
-  toast.warn(`Remove item ${title}`, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  const dlt = (id, title) => {
+    dispatch(DLT(id));
+    toast.warn(`Remove item ${title}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
   }
   const total = () => {
     let price = 0
     data.map((item) => {
-      price = item.price + price
+      price = item.price * item.quantity + price
 
     });
     setprice(price)
   };
+
+  const empty = () => {
+    if (data.length === 0) {
+     
+      navigate("/")
+    }
+  }
   useEffect(() => {
+
+
+
+    empty()
+
     total()
 
 
@@ -52,21 +67,21 @@ console.log(id)
       <div className="cart_section">
         <div className="container">
           <div className="main_heading">
-          <ToastContainer />
+            <ToastContainer />
             <h2>
               details about the product
 
             </h2>
             <div className="cart_total">
-            <p> ${price}  <div className="tet">
-        {data.length}  items
-       
-        </div> </p>
+              <p> ${price}  <div className="tet">
+                <span id='cart_lenght'>{data.length} </span> items
+
+              </div> </p>
               <h1>
-               total price  {Math.floor(price )}
-               <div className="discount">
-                % discount
-               </div>
+                total price <span><AiOutlineDollar /></span> :  {Math.floor(price)}
+                <div className="discount">
+                  % discount
+                </div>
               </h1>
             </div>
           </div>
@@ -112,19 +127,21 @@ console.log(id)
                             <h2>  price of the product</h2>
                           </div>
                           <h2>
-                            pkr $ : {item.price}
+                            pkr $ : {item.price * item.quantity}
                           </h2>
                         </div>
                         <div className="detail_quantitiy_pdrct">
                           <h3>
-                            quantity of product
+                            quantity of product <span> {item.quantity}</span>
                           </h3>
                           <div id="incdec">
-                            <button className='btn_number minus' onClick={()=>remove(item.id)}><AiOutlineMinusCircle /></button>
-                            {/* <input type="number" value={item.quantity} className='form_control' /> */}
-                            {item.quantity}
-                            <button className='btn_number plus' 
-                            onClick={()=>add(item.quantity)}><AiOutlinePlusCircle/></button>
+                            <button className='btn_number minus' onClick={() => remove(item.id)}><AiOutlineMinusCircle /></button>
+
+                            <div className="quantity_item">
+                              {item.quantity}
+                            </div>
+                            <button className='btn_number plus'
+                              onClick={() => add(item.id)}><AiOutlinePlusCircle /></button>
 
                           </div>
                         </div>
@@ -133,8 +150,8 @@ console.log(id)
                             checkout
                           </button>
 
-                          <button className='btn btn_danger btn_main' onClick={()=>dlt(item.id,item.title)}>
-                           remove <span><BsTrashFill/></span>
+                          <button className='btn btn_danger btn_main' onClick={() => dlt(item.id, item.title)}>
+                            remove <span><BsTrashFill /></span>
                           </button>
                         </div>
                       </div>
@@ -150,4 +167,4 @@ console.log(id)
   )
 }
 
-export default Cart
+export default Cart;

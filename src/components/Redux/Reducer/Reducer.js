@@ -29,26 +29,35 @@ const data=state.carts.filter((el)=>el.id !== action.payload)
           carts:data
      }
      case "ADD_ONE":
-      
-     const item = state.carts.find((item) => item.quantity === action.payload);
-     item.quantity++;
-     return{
-        ...state,
-        carts:[...state.carts,item]
+     const modifiedCarts1 = state.carts.map((item) => {
+         if (item.id === action.payload) {
+             return {...item, quantity: item.quantity + 1};
+         }
+         return item;
+     });
+     return {
+         ...state,
+         carts: modifiedCarts1
      }
-  
-  
-  
-  
-     case "RMV-ONE":
-   
-
-     const item2 = state.carts.find((item) => item.id === action.payload);
-     if (item2.quantity === 1) {
-        item2.quantity = 1
-     } else {
-        item2.quantity--;
+ 
+ case "RMV-ONE":
+     const modifiedCarts = state.carts.map((item) => {
+         if (item.id === action.payload) {
+            if(item.quantity===1){
+              return {...item, quantity: item.quantity + 1};
+            }
+            else{
+              return {...item, quantity: item.quantity - 1};
+            }
+         }
+         return item;
+     });
+     return {
+         ...state,
+         carts: modifiedCarts
      }
+ 
+    
   
 
 
