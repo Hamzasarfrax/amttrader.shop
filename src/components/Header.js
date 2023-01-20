@@ -10,6 +10,12 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
   const data = useSelector((state) => state.CartReducer.carts);
   const navigate = useNavigate();
+  $(function(){
+    let anchor=$("#cart_bar");
+    anchor.on("click",function(){
+      anchor.attr("href")
+    })
+  })
   {
     $(window).scroll(function () {
       var scrolling = $(window).scrollTop();
@@ -75,7 +81,7 @@ const Header = () => {
                   <NavLink class="nav-link" to="/contact">Contact</NavLink>
                 </li>
                 <li class="nav-item">
-                  <NavLink class="nav-link" to="/card_details">
+                  <NavLink class="nav-link" id='cart_bar' to="/card_details">
 
 
 

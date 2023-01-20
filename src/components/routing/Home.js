@@ -18,13 +18,11 @@ const Home = () => {
 <div className="container">
 
 
-<div className="">
+<div className="product_cart">
 
  <Filter/>
 </div>
-<div className="product_cart">
-  <Card/>
-</div>
+
 
  
 </div>
