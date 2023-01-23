@@ -6,13 +6,13 @@ const About = () => {
 <div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://dummyimage.com/1280x500/000/fff&text=1280*500" class="d-block w-100" alt="..."/>
+      <img src={require("../imges/about1.jpg")} class="d-block w-100" alt="..."/>
     </div>
     <div class="carousel-item">
-      <img src="https://dummyimage.com/1280x500/000/fff&text=1280*500" class="d-block w-100" alt="..."/>
+      <img src={require("../imges/about2.jpg")} class="d-block w-100" alt="..."/>
     </div>
     <div class="carousel-item">
-      <img src="https://dummyimage.com/1280x500/000/fff&text=1280*500" class="d-block w-100" alt="..."/>
+    <img src={require("../imges/about3.jpg")} class="d-block w-100" alt="..."/>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

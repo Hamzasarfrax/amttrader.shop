@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa"
 import "../style/card.css";
 
 import { useDispatch } from 'react-redux';
-
+import HashLoader  from "react-spinners/HashLoader"
 
 import Json from "../products/Json";
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,15 +13,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ADD } from '../Redux/Actions/Action';
 
 const Filter = () => {
-  const [data, setdata] = useState(Json);
+  const [data, setdata] = useState([]);
+  const [list, setlist] = useState([]);
   const [first, setfirst] = useState({});
   const [filteredData, setFilteredData] = useState([]);
   const [search, setsearch] = useState('');
+  const [showFull, setshowFull] = useState('');
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+
+  const uniqueCategories = list.reduce((acc, curr) => {
+  acc[curr.category] = curr.category;
+  return acc;
+}, {});
+
+const categories = Object.keys(uniqueCategories);
   const filterByCategory = (category) => {
-    let categ=data.filter(item => item.category === category);
+    let categ=list.filter(item => item.category === category);
    
     setdata(categ);
+
   }
   const send = (x, y) => {
     dispatch(ADD(x))
@@ -57,16 +68,28 @@ const Filter = () => {
   }
 
   const filterall = () => {
-    setdata(Json)
+    setdata(list);
   }
-  useEffect(() => {
+ 
+useEffect(() => {
+  async function fetchData() {
+    const response = await fetch('https://fakestoreapi.com/products');
+    const json = await response.json();
+    setdata(json);
+    setlist(json)
+    setLoading(false);
+  }
 
-  }, []);
+  setTimeout(() => {
+      fetchData();
+  }, 2000)
+}, []);
   return (
     <div>
+
       <ToastContainer />
       <div className="card_wrap mt-5">
-        <div className="row">
+        <div className="row" id='row_reverse'>
           <div className="col-sm-2">
 
             <div className="">
@@ -75,23 +98,15 @@ const Filter = () => {
                   filter by category <FaFilter />
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" onClick={() => filterall()}>
-                    All</a></li>
-                  {
-                    data.map((item, index) => {
-                      return (
-                        <>
+  <li><a class="dropdown-item" onClick={() => filterall()}>All</a></li>
+  {categories.map((category, index) => (
+    <li key={index}><a class="dropdown-item" onClick={() => filterByCategory(category)}>{category}</a></li>
+  ))}
+</ul>
 
 
 
-                          <li key={item.id}><a class="dropdown-item"  onClick={() => filterByCategory(item.category)}> {item.category}</a></li>
 
-
-                        </>
-                      )
-                    })
-                  }
-                </ul>
               </div>
             </div>
           </div>
@@ -106,8 +121,17 @@ const Filter = () => {
           </div>
         </div>
       </div>
+{
+  loading ? (
+  <div className="laodings" id='laodings'>
+  <HashLoader
+  color="#D10024e6"
+  
+/>
 
-      <div className="container">
+  </div>
+
+      ):( <div className="container">
       <div className="row">
                 {data.filter((item) => {
                   if (search === '') {
@@ -142,9 +166,19 @@ const Filter = () => {
                                     {item.title}
                                   </div>
                                   <div className="cart_desc">
-                                    {
-                                      item.description
-                                    }
+                                  <div className="">
+    {item.description.slice(0, 80)}
+    <a onClick={() => setshowFull(!showFull)}>
+      {showFull ? "" : "...read more"}
+    </a>
+  </div>
+  {showFull && (
+    <div className="full_desc">{item.description.slice(80)}
+    <a onClick={() => setshowFull(!showFull)} className="read_more">
+      {showFull ? "...show less" : "...read more"}
+    </a>
+    </div>
+  )}
                                   </div>
                                   <div className="carts_animate">
                                     <div className="cart_price">
@@ -174,7 +208,9 @@ const Filter = () => {
 
 
                 </div>
-              </div>
+              </div>)
+}
+     
 
     </div>
   )

@@ -14,7 +14,20 @@ const Home = () => {
   return (
     <div>
 <div className="home_pages_section">
-<Main_slider/>
+<div className="slider_main">
+  <Main_slider/>
+
+<div className="container">
+<div className="all_main_text">
+   <div className="heading">
+    our moto
+   </div>
+   <div className="para">
+    we are working on trust
+   </div>
+  </div>
+</div>
+</div>
 <div className="container">
 
 

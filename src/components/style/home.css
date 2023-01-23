@@ -52,3 +52,23 @@ border: 1px solid var(--border);
  .home_pages_section .dropdown-toggle .dropdown-menu{
      display: block !important;
  }
+ .home_pages_section .slider_main{
+     position: relative;
+ }
+
+ .home_pages_section .all_main_text{
+     position: absolute;
+     top: 150px;
+     z-index: 5;
+     color: var(--white-text-color);
+     font-weight: 900;
+     font-size: 40px;
+     text-transform: capitalize;
+     text-align: center;
+     width: 100%;
+    left: 0;
+ }
+ .home_pages_section .all_main_text .heading{
+color: var(--main-bg-color);
+
+ }

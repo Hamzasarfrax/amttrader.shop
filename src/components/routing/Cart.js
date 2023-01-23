@@ -13,12 +13,14 @@ import $ from "jquery";
 import { useNavigate } from 'react-router-dom';
 const Cart = () => {
   const [price, setprice] = useState(0);
+  console.log(price)
   const data = useSelector((state) => state.CartReducer.carts);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const remove = (id) => {
     dispatch(REMOVE(id))
-    console.log(id)
+    
   };
   const add = (id) => {
     dispatch(ADD_ONE(id))
@@ -46,17 +48,10 @@ const Cart = () => {
     setprice(price)
   };
 
-  const empty = () => {
-    if (data.length === 0) {
-     
-      navigate("/")
-    }
-  }
+
   useEffect(() => {
 
-
-
-    empty()
+    
 
     total()
 
@@ -92,7 +87,7 @@ const Cart = () => {
                 <>
 
                   <div className="row cart_margin">
-                    <div className="col-sm-6">
+                    <div className="col-sm-6" id='margin_padding'>
                       <div className="slider_cart">
                         <Card_detail_slider />
 

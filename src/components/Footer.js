@@ -1,5 +1,6 @@
 import React from 'react'
-import {BsInstagram,BsFacebook,BsTwitter} from "react-icons/bs"
+import {BsInstagram,BsFacebook,BsTwitter} from "react-icons/bs";
+import { NavLink } from 'react-router-dom';
 const Footer = () => {
   return (
     <div>
@@ -8,7 +9,7 @@ const Footer = () => {
       <div className="row">
          <div className="col-sm-4">
             <div className="footer_headings_main">
-               compnay name
+                <span className='amt'>amt</span> <span className='trader'>traders</span>
             </div>
             <div className="other_details_about_brand">
                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, fuga?
@@ -22,20 +23,18 @@ const Footer = () => {
             <div className="category_details">
             <ul>
                   <li>
-                     <a href='#'>links </a>
+                     <NavLink to='/'>home </NavLink>
                   </li>
                   <li>
-                     <a href='#'>links </a>
+                     <NavLink to='/about'>about us </NavLink>
                   </li>
                   <li>
-                     <a href='#'>links </a>
+                     <NavLink to='/contact'>contact us </NavLink>
                   </li>
                   <li>
-                     <a href='#'>links </a>
+                     <NavLink to='/terms'>terms and condition </NavLink>
                   </li>
-                  <li>
-                     <a href='#'>links </a>
-                  </li>
+                 
                </ul>
             </div>
          </div>

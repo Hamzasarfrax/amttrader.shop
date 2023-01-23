@@ -9,14 +9,15 @@ export default class AsNavFor extends Component {
       nav2: null
     };
   }
-
+ 
   componentDidMount() {
     this.setState({
       nav1: this.slider1,
       nav2: this.slider2
     });
+ 
   }
-
+ 
   render() {
     return (
       <div>
