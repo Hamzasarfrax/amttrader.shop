@@ -20,44 +20,24 @@ const Header = () => {
  
 
 
-  $(function(){
-    let anchor=$("#cart_bar");
-    anchor.on("click",function(){
-      let cart_lenght=$("#cart_lenght").text();
-      if(cart_lenght==0){
-       
-    anchor.attr("href","/")
-   
-            toast.warn("Add Some roduct ", {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-      }
-      
-    })
-  })
+
   {
     $(window).scroll(function () {
       var scrolling = $(window).scrollTop();
       if (scrolling === 0) {
-
+        $("#header-sticky").addClass("fixed");
         $("#header-sticky").removeClass("trans_sticky");
         $("#header-sticky").removeClass("sticky");
 
       }
       if (scrolling >= 60) {
-
+        $("#header-sticky").removeClass("fixed");
         $("#header-sticky").addClass("trans_sticky");
         $("#header-sticky").removeClass("sticky");
 
       }
       if (scrolling >= 120) {
+        $("#header-sticky").removeClass("fixed");
         $("#header-sticky").removeClass("trans_sticky");
         $("#header-sticky").addClass("sticky");
       }
@@ -83,8 +63,11 @@ const Header = () => {
     // }
 
   }
+ 
+
   return (
     <div>
+   
       <header classname="header_sec">
       <ToastContainer />
         <nav className="navbar navbar-expand-lg " id='header-sticky'>
@@ -107,21 +90,23 @@ const Header = () => {
                   <NavLink class="nav-link" to="/contact">Contact</NavLink>
                 </li>
                 <li class="nav-item">
-                  <NavLink class="nav-link" id='cart_bar' to="/card_details">
+                  <NavLink class="nav-link" id='cart_bar' to="/card_details" >
 
 
 
-                    <div type="button" class="cart_routing">
+                    <div type="button" class="cart_routing" >
                       <div className="cart_icon">
                         <BsFillCartFill />
                       </div>
-
-                      <span class="badge_icon">
+                      {
+                          data.length==0 ? "":    <span class="badge_icon">
                         <div className="text-center" id='cart_lenght'>
-                          {data.length}
-
+                        {data.length}
+                        
                         </div>
                       </span>
+                        }
+                  
                     </div>
                   </NavLink>
                 </li>

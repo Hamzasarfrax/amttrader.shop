@@ -11,7 +11,8 @@ switch(action.type){
             const indextitem = state.carts.findIndex((item) => item.id === action.payload.id);
 
             if (indextitem >= 0) {
-                state.carts[indextitem].total += 1
+                state.carts[indextitem].total += 1;
+               
             } else {
                 const temp = { ...action.payload,
                     total: 1

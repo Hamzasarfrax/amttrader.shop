@@ -153,3 +153,16 @@ color: var(--bg--danger);
     color: var(--bg--danger);
     font-size: 12px;
   }
+
+.anchor_emty_cart{
+    background-color: var(--bg--danger);
+    color: var(--text--white);
+font-weight: 700;
+font-size: 20px;
+    padding: 15px;
+    margin: 20px 0px;
+  }
+  .anchor_emty_cart:hover{
+    color: var(--text--white);
+    text-decoration: underline;
+  }

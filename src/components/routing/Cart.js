@@ -10,7 +10,7 @@ import Card_detail_slider from '../slider/Cart_detail_slider';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import $ from "jquery";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const Cart = () => {
   const [price, setprice] = useState(0);
   console.log(price)
@@ -20,10 +20,11 @@ const Cart = () => {
   const dispatch = useDispatch();
   const remove = (id) => {
     dispatch(REMOVE(id))
-    
+
   };
   const add = (id) => {
-    dispatch(ADD_ONE(id))
+    dispatch(ADD_ONE(id));
+
 
   };
   const dlt = (id, title) => {
@@ -51,7 +52,7 @@ const Cart = () => {
 
   useEffect(() => {
 
-    
+
 
     total()
 
@@ -59,105 +60,124 @@ const Cart = () => {
   }, [total]);
   return (
     <div>
-      <div className="cart_section">
-        <div className="container">
-          <div className="main_heading">
-            <ToastContainer />
-            <h2>
-              details about the product
 
-            </h2>
-            <div className="cart_total">
-              <p> ${price}  <div className="tet">
-                <span id='cart_lenght'>{data.length} </span> items
-
-              </div> </p>
-              <h1>
-                total price <span><AiOutlineDollar /></span> :  {Math.floor(price)}
-                <div className="discount">
-                  % discount
-                </div>
-              </h1>
+      {
+        data.length == 0 ? (<div className="container">
+          <div className="card_wrap">
+            <div className="heading text-danger text-capitalize text-center">
+              <h1>pleadse add some products</h1>
+            </div>
+            <div className="text-center text-capitalize text-danger">
+              <h3>
+                there is no product to checkout
+              </h3>
+              <div className="text-capitalize mt-5 mb-4">
+                <NavLink to="/" className="anchor_emty_cart">go to add some products</NavLink>
+              </div>
             </div>
           </div>
+        </div>) : (<div className="cart_section">
+          <div className="container">
+            <div className="main_heading">
+              <ToastContainer />
+              <h2>
+                details about the product
 
-          {
-            data.map((item) => {
-              return (
-                <>
+              </h2>
+              <div className="cart_total">
+                <p> ${price}  <div className="tet">
+                  <span id='cart_lenght'>{data.length} </span> items
 
-                  <div className="row cart_margin">
-                    <div className="col-sm-6" id='margin_padding'>
-                      <div className="slider_cart">
-                        <Card_detail_slider />
-
-                        <div className="reviews_sectr">
-                          <div className="h3">rating of product</div>
-                          <span class="fa fa-star checked"></span>
-                          <span>
-                            <FcRating />
-                          </span>
-                          <span>
-                            <FcRating />
-                          </span>
-                          <span>
-                            <FcRating />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="bref_desc">
-
-                        <h1 className=''>Product Name</h1>
-                        <div className="detailing clor">
-                          {item.title}
-                        </div>
-                        <h1>description</h1>
-                        <div className="detailing">
-                          {item.description}
-                        </div>
-                        <div className="price_box">
-                          <div className="tittle_price">
-                            <h2>  price of the product</h2>
-                          </div>
-                          <h2>
-                            pkr $ : {item.price * item.quantity}
-                          </h2>
-                        </div>
-                        <div className="detail_quantitiy_pdrct">
-                          <h3>
-                            quantity of product <span> {item.quantity}</span>
-                          </h3>
-                          <div id="incdec">
-                            <button className='btn_number minus' onClick={() => remove(item.id)}><AiOutlineMinusCircle /></button>
-
-                            <div className="quantity_item">
-                              {item.quantity}
-                            </div>
-                            <button className='btn_number plus'
-                              onClick={() => add(item.id)}><AiOutlinePlusCircle /></button>
-
-                          </div>
-                        </div>
-                        <div className="checkout_btn">
-                          <button className='btn btn_danger btn_checkout'>
-                            checkout
-                          </button>
-
-                          <button className='btn btn_danger btn_main' onClick={() => dlt(item.id, item.title)}>
-                            remove <span><BsTrashFill /></span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                </div> </p>
+                <h1>
+                  total price <span><AiOutlineDollar /></span> :  {Math.floor(price)}
+                  <div className="discount">
+                    % discount
                   </div>
-                </>
-              )
-            })
-          }
-        </div>
-      </div>
+                </h1>
+              </div>
+            </div>
+
+            {
+              data.map((item) => {
+                return (
+                  <>
+
+                    <div className="row cart_margin">
+                      <div className="col-sm-6" id='margin_padding'>
+                        <div className="slider_cart">
+                          <Card_detail_slider />
+
+                          <div className="reviews_sectr">
+                            <div className="h3">rating of product</div>
+                            <span class="fa fa-star checked"></span>
+                            <span>
+                              <FcRating />
+                            </span>
+                            <span>
+                              <FcRating />
+                            </span>
+                            <span>
+                              <FcRating />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-sm-6">
+                        <div className="bref_desc">
+
+                          <h1 className=''>Product Name</h1>
+                          <div className="detailing clor">
+                            {item.title}
+                          </div>
+                          <h1>description</h1>
+                          <div className="detailing">
+                            {item.description}
+                          </div>
+                          <div className="price_box">
+                            <div className="tittle_price">
+                              <h2>  price of the product</h2>
+                            </div>
+                            <h2>
+                              pkr $ : {item.price * item.quantity}
+                            </h2>
+                          </div>
+                          <div className="detail_quantitiy_pdrct">
+                            <h3>
+                              quantity of product <span> {item.quantity}</span>
+                            </h3>
+                            <div id="incdec">
+                              <button className='btn_number minus' onClick={() => remove(item.id)}><AiOutlineMinusCircle /></button>
+
+                              <div className="quantity_item">
+                                {item.quantity}
+                              </div>
+                              <button className='btn_number plus'
+                                onClick={() => add(item.id)}><AiOutlinePlusCircle /></button>
+
+                            </div>
+                          </div>
+                          <div className="checkout_btn">
+                          <NavLink className='btn btn_danger btn_checkout' to={`/checkout/${item.id}`}>
+  checkout
+</NavLink>
+
+                            <button className='btn btn_danger btn_main' onClick={() => dlt(item.id, item.title)}>
+                              remove <span><BsTrashFill /></span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )
+              })
+            }
+          </div>
+        </div>)
+      }
+
+
     </div>
   )
 }

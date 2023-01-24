@@ -39,7 +39,10 @@ header .navbar.sticky {
     transform: translateY(0%);
     z-index: 10;
 }
-
+header .navbar.fixed {
+    transition: 0.5s;
+        transform: translateY(0px);
+}
 header .navbar li a {
     color: var(--white-text-color);
     text-decoration: none;
@@ -392,7 +395,7 @@ background-color: var(--border);
 }
 
 .slick-dots li {
-    width: 20px;
+    width: 35px;
     height: 2px;
     border-radius: 10px;
 }
@@ -402,4 +405,11 @@ background-color: var(--border);
     height: 2px;
     border-radius: 10px;
     transition: all 0.4s ease-in-out;
+}
+
+#spinner_wait{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }

@@ -20,8 +20,16 @@
 
     header .navbar {
         background-color: hsl(233, 16%, 10%);
-        /* height: 60px; */
+         height: 65px; 
     }
+    header .navbar.fixed{
+        transition: 0.5s;
+        transform: translateY(0px);
+      
+        
+    }
+   
+
     header #header-sticky{
         display: block !important;
             }
@@ -137,6 +145,6 @@ background-color: var(--main-bg-color) !important;
     padding: 0px !important;
 }
 .home_pages_section .all_main_text{
-    top: 20px;
+    top: 20px !important;
 }
 }

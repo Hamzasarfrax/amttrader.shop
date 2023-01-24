@@ -1,0 +1,68 @@
+/*======================
+    404 page
+=======================*/
+:root {
+     --main-bg-color: #D10024e6;
+     --dark-text-color: #333;
+     --bg-black-color: #1E1F29;
+     --white-text-color: #FFF;
+     --font-family: Poppins, sans-serif;
+     --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     --border: rgba(0, 0, 0, .1);
+
+}
+
+.page_404 {
+     padding: 40px 0;
+     background: #fff;
+     font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+     width: 100%;
+}
+
+.four_zero_four_bg {
+
+     background-image: url("../imges/page404.gif");
+     height: 400px;
+     background-position: center;
+}
+
+
+.four_zero_four_bg h1 {
+     font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+     font-size: 80px;
+}
+
+.link_404 {
+     color: #fff !important;
+     padding: 10px 20px;
+     background: var(--main-bg-color);
+     margin: 20px 0;
+     font-weight: 700;
+     font-size: 20px;
+     text-transform: capitalize;
+     display: inline-block;
+}
+
+.contant_box_404 {
+     margin-top: -50px;
+}
+
+.params{
+     color: var(--main-bg-color);
+     text-transform: capitalize;
+     font-weight: 700;
+     font-size: 20px;
+}
+.params_not{
+     color: var(--main-bg-color);
+     text-transform: capitalize;
+     font-weight: 700;
+     font-size: 20px;
+     text-align: center;  
+}
