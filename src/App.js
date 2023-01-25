@@ -13,6 +13,9 @@ import Terms from './components/routing/Terms';
 import Page404 from './components/routing/Page404';
 import HashLoader from "react-spinners/HashLoader"
 import Checkout from './components/routing/Checkout';
+import Dashbord from './components/admin_area/Dashbord';
+import Sidebar from './components/admin_area/Sidebar';
+import Admin_area from './components/admin_area/Admin_area';
 
 const App = () => {
   const [loading, setloading] = useState(true);
@@ -48,8 +51,12 @@ const App = () => {
                 <Route exact path="/terms" element={<Terms />} />
                 <Route exact path="/:param1" element={<Page404 />} />
                 <Route exact path="/checkout/:id" element={<Checkout/>} />
+                <Route exact path="/dashbord" element={<Dashbord/>} >
+                </Route>
+                <Route exact path="/dashbord/admin_area" element={<Admin_area/>} />
 
               </Routes>
+          
             </div>
           </main>
           <Footer />

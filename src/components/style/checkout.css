@@ -1,0 +1,58 @@
+:root {
+     --main-bg-color: #D10024e6;
+     --dark-text-color: #333;
+     --bg-black-color: #15161D;
+     --white-text-color: #FFF;
+     --font-family: Poppins, sans-serif;
+     --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     --border: rgba(0, 0, 0, .1);
+ 
+ }
+ 
+.section_checkout{
+     text-transform: capitalize;
+     font-family: var(--font-family);
+     color: var(--dark-text-color);
+}
+.section_checkout .headings h1{
+     color: var(--main-bg-color);
+     text-align: center;
+     margin: 10px 0px;
+     font-weight: 700;
+     font-size: 45px;
+     
+    
+    
+}
+.checkout_process{
+     position: relative;
+}
+.section_checkout .card_box label{
+     color: var(--main-bg-color);
+     font-size: 15px;
+     font-weight: 700;
+}
+.section_checkout .card_box .form-control{
+     text-transform: capitalize;
+     font-weight: 700;
+}
+.checkout_process .checkout  .nav-link{
+     background-color:var(--bg-black-color);
+     color: var(--white-text-color);
+     font-size: 18px;
+     text-align: left;
+     font-weight: 700;
+     border: transparent;
+     margin-top: 15px;
+     border-radius: 10px;
+     letter-spacing: 1px;
+}
+
+.checkout_process .checkout  .nav-link.active{
+     background-color:var(--main-bg-color);
+     color: var(--white-text-color);
+}
+.section_checkout .card_box .checkout_img{
+     width: 200px;
+     height: 200px;
+}

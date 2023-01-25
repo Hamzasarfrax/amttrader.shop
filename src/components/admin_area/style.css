@@ -1,0 +1,43 @@
+:root {
+     --main-bg-color: #D10024e6;
+     --dark-text-color: #333;
+     --bg-black-color: #15161D;
+     --white-text-color: #FFF;
+     --font-family: Poppins, sans-serif;
+     --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     --border: rgba(0, 0, 0, .1);
+ 
+ }
+*{
+     box-sizing: border-box;
+
+} 
+
+aside .sidebar{
+width: 200px;
+background-color:var(--main-bg-color);
+color: #FFF;
+padding: 20px;
+text-transform: capitalize;
+position: fixed;
+height: 100vh;
+}
+
+.navbar_pills{
+     display: contents;
+}
+.menu-side{
+     display: flex;
+     margin: 10px 0px;
+     gap: 10px;
+}
+.menu-side .name{
+     color: var(--white-text-color);
+     font-size: 18px;
+     font-weight: 700;
+}
+.menu-side .icons{
+     color: var(--white-text-color);
+     font-size: 18px;
+     font-weight: 700;
+}

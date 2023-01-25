@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react';
 import "../style/contact.css";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 const Contact = () => {
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else{
+      alert("form submit")
+    }
+
+    setValidated(true);
+  };
+
   return (
     <div>
 
@@ -22,29 +39,55 @@ const Contact = () => {
           </div>
           <div className="col-sm-6">
             <div className="conatct_form">
-              <form action="">
-              <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">first name</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="username"/>
-</div>
-        <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">last name</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="last name"/>
-</div>
-        <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
-</div>
-        <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">phone number</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="1234567890"/>
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-<button className='btn btn_main btn_form'>submit</button>
-              </form>
+            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+   
+        <Form.Group controlId="validationCustom01" className='form_group'>
+          <Form.Label>First name</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="First name"
+        
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group  controlId="validationCustom02" className='form_group'>
+          <Form.Label>Last name</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Last name"
+       
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+      
+     
+        <Form.Group  controlId="validationCustom02" className='form_group'>
+          <Form.Label>email</Form.Label>
+          <Form.Control
+            required
+            type="email"
+            placeholder="user@gmail.com"
+            
+          />
+          <Form.Control.Feedback> email looks good!</Form.Control.Feedback>
+        </Form.Group>
+     
+     <div className="form_group ">
+     <Form.Control as="textarea" className='text_area' placeholder="Leave a comment here" />
+     </div>
+        
+      <Form.Group className="mb-3 form_group" >
+        <Form.Check
+          required
+          label="Agree to terms and conditions"
+          feedback="You must agree before submitting."
+          feedbackType="invalid"
+        />
+      </Form.Group>
+      <Button  type="submit" className='btn btn_main btn_form'>Submit form</Button>
+    </Form>
             </div>
           </div>
           </div>
