@@ -87,3 +87,9 @@ form-control.is-valid, .was-validated .form-control:valid {
     outline: none;
     box-shadow: none;
 }
+
+.box_contactus #exampleFormControlTextarea1{
+    height: 200px;
+    max-height: 200px;
+    min-height: 200px;
+}

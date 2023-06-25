@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+import Payment from '../products/Payment';
 const Checkout = () => {
   const [list, setlist] = useState([]);
   const [validated, setValidated] = useState(false);
@@ -96,7 +97,7 @@ const Checkout = () => {
 
     <div className="payment_box">
 
-<form>
+{/* <form>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
@@ -111,7 +112,8 @@ const Checkout = () => {
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</form> */}
+<Payment/>
 </div>
 
     </div>

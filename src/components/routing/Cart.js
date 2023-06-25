@@ -11,8 +11,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import $ from "jquery";
 import { NavLink, useNavigate } from 'react-router-dom';
+import Slider from "react-slick";
+
+let slider1 = null;
+let slider2 = null;
 const Cart = () => {
   const [price, setprice] = useState(0);
+  const [nav1, setNav1] = useState(null);
+  const [nav2, setNav2] = useState(null);
   console.log(price)
   const data = useSelector((state) => state.CartReducer.carts);
 
@@ -58,6 +64,10 @@ const Cart = () => {
 
 
   }, [total]);
+  useEffect(() => {
+    setNav1(slider1);
+    setNav2(slider2);
+  }, []);
   return (
     <div>
 
@@ -92,7 +102,7 @@ const Cart = () => {
                 <h1>
                   total price <span><AiOutlineDollar /></span> :  {Math.floor(price)}
                   <div className="discount">
-                    % discount
+                  {price}  % discount
                   </div>
                 </h1>
               </div>
@@ -106,7 +116,49 @@ const Cart = () => {
                     <div className="row cart_margin">
                       <div className="col-sm-6" id='margin_padding'>
                         <div className="slider_cart">
-                          <Card_detail_slider />
+                        <div className="cart_detail_slider ">
+                <Slider asNavFor={nav2} ref={(slider) => (slider1 = slider)}>
+                  <div>
+                    <img src={item.image} alt="" className="img-fluid  imge_main rounded" />
+                  </div>
+                  <div>
+                    <img src={item.image1} alt="" className="img-fluid  imge_main rounded" />
+                  </div>
+                  <div>
+                    <img src={item.image2} alt="" className="img-fluid  imge_main rounded" />
+                  </div>
+                  <div>
+                    <img src={item.image3} alt="" className="img-fluid  imge_main rounded" />
+                  </div>
+               
+
+
+                </Slider>
+
+                <Slider
+                  asNavFor={nav1}
+                  ref={(slider) => (slider2 = slider)}
+                  slidesToShow={3}
+                  swipeToSlide={true}
+                  focusOnSelect={true}
+                >
+                  <div className="">
+                    <img src={item.image} alt="" className="img-fluid  rounded" />
+                  </div>
+
+                  <div className="">
+                    <img src={item.image1} alt="" className="img-fluid  rounded" />
+                  </div>
+                  <div className="">
+                    <img src={item.image2} alt="" className="img-fluid  rounded" />
+                  </div>
+                  <div className="">
+                    <img src={item.image3} alt="" className="img-fluid  rounded" />
+                  </div>
+
+
+                </Slider>
+              </div>
 
                           <div className="reviews_sectr">
                             <div className="h3">rating of product</div>

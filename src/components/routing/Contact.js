@@ -10,13 +10,38 @@ const Contact = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    } else {
+      const fnam = event.target.elements.fnam.value;
+      const lname = event.target.elements.lname.value;
+      const email = event.target.elements.email.value;
+      const message = event.target.elements.message.value;
+  
+      fetch('http://localhost:2000/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          fnam,
+          lname,
+          email,
+          message
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Form submitted successfully!");
+        } else {
+          alert("Failed to submit form.");
+        }
+      })
+      .catch(error => console.error(error));
     }
-    else{
-      alert("form submit")
-    }
-
+  
     setValidated(true);
   };
+  
 
   return (
     <div>
@@ -38,57 +63,30 @@ const Contact = () => {
        </div>
           </div>
           <div className="col-sm-6">
-            <div className="conatct_form">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-   
-        <Form.Group controlId="validationCustom01" className='form_group'>
-          <Form.Label>First name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="First name"
-        
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group  controlId="validationCustom02" className='form_group'>
-          <Form.Label>Last name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Last name"
-       
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-      
-     
-        <Form.Group  controlId="validationCustom02" className='form_group'>
-          <Form.Label>email</Form.Label>
-          <Form.Control
-            required
-            type="email"
-            placeholder="user@gmail.com"
-            
-          />
-          <Form.Control.Feedback> email looks good!</Form.Control.Feedback>
-        </Form.Group>
-     
-     <div className="form_group ">
-     <Form.Control as="textarea" className='text_area' placeholder="Leave a comment here" />
-     </div>
-        
-      <Form.Group className="mb-3 form_group" >
-        <Form.Check
-          required
-          label="Agree to terms and conditions"
-          feedback="You must agree before submitting."
-          feedbackType="invalid"
-        />
-      </Form.Group>
-      <Button  type="submit" className='btn btn_main btn_form'>Submit form</Button>
-    </Form>
-            </div>
+          <div class="conatct_form">
+  <form method='post' action='http://localhost:2000/contact'> 
+    <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">first name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="username" name='fnam'/>
+    </div>
+    <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">last name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="last name" name='lname'/>
+    </div>
+    <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name='email'/>
+    </div>
+    <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">phone number</label>
+    <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1234567890" name='phonenum'/>
+    </div>
+    <div class="mb-3"><label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name='message'></textarea>
+    </div>
+    <button type='submit' class="btn btn_main btn_form">submit</button>
+  </form>
+</div>
           </div>
           </div>
          </div>

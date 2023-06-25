@@ -14,12 +14,12 @@ import { ADD } from '../Redux/Actions/Action';
 
 const Filter = () => {
   const [data, setdata] = useState([]);
-  const [list, setlist] = useState([]);
+  const [list, setlist] = useState(Json);
   const [first, setfirst] = useState({});
   const [filteredData, setFilteredData] = useState([]);
   const [search, setsearch] = useState('');
   const [showFull, setshowFull] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(12); // Number of items to display per page
@@ -75,17 +75,18 @@ const Filter = () => {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await fetch('https://fakestoreapi.com/products');
-      const json = await response.json();
+    // async function fetchData() {
+    //   const response = await fetch('https://fakestoreapi.com/products');
+    //   const json = await response.json();
 
-      setlist(json)
-      setLoading(false);
-    }
+    //   setlist(json)
+    //   setLoading(false);
+    // }
 
-    setTimeout(() => {
-      fetchData();
-    }, 2000)
+    // setTimeout(() => {
+    //   setLoading(false);
+      
+    // }, 2000)
   }, []);
 
   const handlePageChange = (pageNumber) => {

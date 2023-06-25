@@ -4,7 +4,7 @@ import "../style/page404.css";
 const Page404 = () => {
      const { param1 } = useParams();
      const [param, setparam] = useState(param1)
-
+setparam(param1)
      return (
           <div>
 
